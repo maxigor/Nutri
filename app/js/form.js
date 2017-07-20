@@ -10,12 +10,26 @@ function pegaPacientedoForm(form){
   return paciente;
 }
 
+function validaPaciente(paciente){
+  var erros = [];
+
+  if(!validaPeso(paciente.peso)) {
+    erros.push("O Peso é invalido");
+  }
+
+  if(!validaAltura(paciente.altura)) {
+    erros.push("A Altura é invalida");
+  }
+
+  return erros;
+}
+
 function exibeMensagemDeErro(erros){
   var ul = document.querySelector("#mensagensErro");
 
-  erros.forEach(function(erro){
+  erros.forEach(function(erros){
     var li = document.createElement("li");
-    li.textContent = erro;
+    li.textContent = erros;
     ul.appendChild(li);
   });
 }
@@ -42,19 +56,8 @@ function montaTr(paciente){
 }
 
 
-function validaPaciente(paciente){
-  var erro = [];
 
-  if(!validaPeso(paciente.peso)) {
-    erro.push("O Peso é invalido");
-  }
 
-  if(!validaAltura(paciente.altura)) {
-    erro.push("A Altura é invalida");
-  }
-
-  return erro;
-}
 
 var botao = document.querySelector("#adicionar-paciente");
 
@@ -70,7 +73,7 @@ botao.addEventListener("click", function(event){
   var erro = validaPaciente(paciente);
 
   if (erro.length > 0) {
-    exibeMensagemDeErro(erro)
+    exibeMensagemDeErro(erro);
     return;
   }
 
