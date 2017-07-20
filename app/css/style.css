@@ -1,3 +1,7 @@
 .paciente-invalido {
   background-color: red;
 }
+
+#mensagemErro {
+  color: red;
+}

@@ -10,6 +10,16 @@ function pegaPacientedoForm(form){
   return paciente;
 }
 
+function exibeMensagemDeErro(erros){
+  var ul = document.querySelector("#mensagensErro");
+
+  erros.forEach(function(erro){
+    var li = document.createElement("li");
+    li.textContent = erro;
+    ul.appendChild(li);
+  });
+}
+
 function montaTd(dados, classe) {
   var td = document.createElement("td");
   td.classList.add("classe");
@@ -33,7 +43,17 @@ function montaTr(paciente){
 
 
 function validaPaciente(paciente){
-  if( paciente.peso > 0 )
+  var erro = [];
+
+  if(!validaPeso(paciente.peso)) {
+    erro.push("O Peso é invalido");
+  }
+
+  if(!validaAltura(paciente.altura)) {
+    erro.push("A Altura é invalida");
+  }
+
+  return erro;
 }
 
 var botao = document.querySelector("#adicionar-paciente");
@@ -43,15 +63,20 @@ botao.addEventListener("click", function(event){
 
   var form = document.querySelector("#form-adiciona");
 
-  var tabela = document.querySelector("#tabela-pacientes");
-
   var paciente = pegaPacientedoForm(form);
 
-  validaPeso(paciente.peso);
+  pacienteTr = montaTr(paciente);
 
-  montaTr(paciente);
+  var erro = validaPaciente(paciente);
 
-  tabela.appendChild(trPaciente);
+  if (erro.length > 0) {
+    exibeMensagemDeErro(erro)
+    return;
+  }
+
+  var tabela = document.querySelector("#tabela-pacientes");
+
+  tabela.appendChild(pacienteTr);
 
   form.reset();
 });
