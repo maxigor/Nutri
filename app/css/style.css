@@ -2,6 +2,13 @@
   background-color: red;
 }
 
-#mensagemErro {
+.fadeOut {
+    opacity: 0;
+    transition:  0.5;
+}
+
+#mensagensErro {
+  text-align: center;
+  font-size: 20px;
   color: red;
 }

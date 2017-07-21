@@ -6,7 +6,6 @@ function calculaImc (peso , altura) {
 }
 
 function validaPeso(peso) {
-
     if (peso > 0 && peso < 300) {
         return true;
     } else {
@@ -15,14 +14,12 @@ function validaPeso(peso) {
 }
 
 function validaAltura(altura) {
-
     if (altura > 0 && altura < 3.00) {
         return true;
     } else {
         return false;
     }
 }
-
 
 var pacientes = document.querySelectorAll(".paciente");
 
@@ -40,7 +37,7 @@ for (posicao = 0; posicao < pacientes.length; posicao++){
 
   var pesoEhValido = validaPeso(peso);
   var alturaEhValida = validaAltura(altura);
-  
+
   if (!pesoEhValido) {
       console.log("Peso inválido!");
       pesoEhValido = false;

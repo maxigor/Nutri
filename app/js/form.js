@@ -14,18 +14,37 @@ function validaPaciente(paciente){
   var erros = [];
 
   if(!validaPeso(paciente.peso)) {
-    erros.push("O Peso é invalido");
+    erros.push("O peso é invalido");
   }
 
   if(!validaAltura(paciente.altura)) {
-    erros.push("A Altura é invalida");
+    erros.push("A altura é invalida");
   }
+
+  if(paciente.nome.length == 0){
+    erros.push("O nome não pode estar em branco ");
+  }
+
+  if(paciente.gordura.length == 0){
+    erros.push("O gordura não pode estar em branco ");
+  }
+
+  if(paciente.altura.length == 0){
+    erros.push("O altura não pode estar em branco ");
+  }
+
+  if(paciente.peso.length == 0){
+    erros.push("O peso não pode estar em branco ");
+  }
+
+
 
   return erros;
 }
 
 function exibeMensagemDeErro(erros){
   var ul = document.querySelector("#mensagensErro");
+  ul.innerHTML = "";
 
   erros.forEach(function(erros){
     var li = document.createElement("li");
@@ -82,4 +101,6 @@ botao.addEventListener("click", function(event){
   tabela.appendChild(pacienteTr);
 
   form.reset();
+  var mensagensErro = document.querySelector("#mensagensErro");
+  mensagensErro.innerHTML = "";
 });
