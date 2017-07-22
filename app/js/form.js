@@ -74,6 +74,11 @@ function montaTr(paciente){
   return trPaciente;
 }
 
+function adicionaPaciente(paciente) {
+  var pacienteTr = montaTr(paciente);
+  var tabela = document.querySelector("#tabela-pacientes");
+  tabela.appendChild(pacienteTr);
+}
 
 
 
@@ -84,23 +89,18 @@ botao.addEventListener("click", function(event){
   event.preventDefault();
 
   var form = document.querySelector("#form-adiciona");
-
   var paciente = pegaPacientedoForm(form);
-
-  pacienteTr = montaTr(paciente);
-
   var erro = validaPaciente(paciente);
+
+  adicionaPaciente(paciente);
 
   if (erro.length > 0) {
     exibeMensagemDeErro(erro);
     return;
   }
-
-  var tabela = document.querySelector("#tabela-pacientes");
-
-  tabela.appendChild(pacienteTr);
-
-  form.reset();
   var mensagensErro = document.querySelector("#mensagensErro");
   mensagensErro.innerHTML = "";
+
+  form.reset();
+
 });
